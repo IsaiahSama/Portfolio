@@ -17,5 +17,6 @@ The frontend should be designed in a way that is instantly recognizable as Mine.
 Primary - #3498DB
 Secondary - #2ECC71
 Accent - #F39C12
-Background - #F5F5F5
-Text - #333333
+Background - #121212
+Text - #E0E0E0
+Code Background - #282C34

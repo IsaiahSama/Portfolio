@@ -6,6 +6,44 @@
 }
 
 body {
-  background-color: #F5F5F5;
-  color: #333333;
+  background-color: #121212;
+  color: #E0E0E0;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.primary {
+  color: #3498DB;
+}
+
+.secondary {
+  color: #2ECC71;
+}
+
+.accent {
+  color: #F39C12;
+}
+
+.code-background {
+  background-color: #282C34;
+  color: #2ECC71;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.button {
+  background-color: #3498DB;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #2ECC71;
 }
