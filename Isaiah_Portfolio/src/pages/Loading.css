@@ -10,7 +10,6 @@
 }
 
 .terminal-window {
-    opacity: 0;
     text-align: left;
     width: 90%;
     max-width: 90%;
@@ -23,8 +22,12 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     word-wrap: break-word;
-    animation: hoverUpDown 2s ease-in-out infinite, fadeIn 1.2s ease-in forwards;
     z-index: inherit;
+}
+
+.hover-fade{
+    opacity: 0;
+    animation: hoverUpDown 2s ease-in-out infinite, fadeIn 1.2s ease-in forwards;
 }
 
 @keyframes hoverUpDown {
@@ -109,5 +112,19 @@
     to {
         transform: translateY(0);
         opacity: 0.8;
+    }
+}
+
+.fly-away{
+    animation: flyAway 2s ease-out forwards;
+}
+
+@keyframes flyAway {
+    from {
+        transform: translateY(0px);
+    }
+
+    to{
+        transform: translateY(-1000px);
     }
 }

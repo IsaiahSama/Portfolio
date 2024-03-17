@@ -10,7 +10,7 @@ function Loading() {
 
     const lines_of_code = [
         "print('Hello World')",
-        "Hello World",
+        "\"Hello World\"",
         "isReady = input('Are you ready?\\n: ')",
         "\"Are you ready?\"",
         ": Yes",
@@ -22,20 +22,39 @@ function Loading() {
     ]
 
     const codeContainerRef = useRef<HTMLScriptElement>(null)
+    const terminalWindowRef = useRef<HTMLDivElement>(null)
     
     useEffect(() => {
+        let isMounted = true;
+        const timers: number[] = []
         const timer = setTimeout(() => {
             if (currentLine < lines_of_code.length){
                 setCurrentLine(currentLine + 1);
             }
             if (currentLine == lines_of_code.length - 1){
-                setTimeout(() => {
-                    // navigate("/home")
+                const endTimer1 = setTimeout(() => {
+                    if (terminalWindowRef.current){
+                        terminalWindowRef.current.classList.remove("hover-fade")
+                        terminalWindowRef.current.classList.add("fly-away")
+                    }
                 }, 2000)
+    
+                const endTimer2 = setTimeout(() => {
+                    navigate("/home")
+                }, 3700)
+    
+                timers.push(endTimer1, endTimer2)
             }
         }, 750)
+
+        timers.push(timer)
         
-        return () => clearTimeout(timer);
+        return () => {
+            isMounted = false;
+            if (isMounted){
+                timers.forEach(timer => clearTimeout(timer))
+            }
+        };
     }, [currentLine]);
     
     useEffect(() => {
@@ -51,7 +70,7 @@ function Loading() {
 
     return (
         <div className="loading-container">
-            <div className="terminal-window code-background">
+            <div className="terminal-window code-background hover-fade" ref={terminalWindowRef}>
                 <pre>
                     <code ref={codeContainerRef}></code>
                 </pre>
