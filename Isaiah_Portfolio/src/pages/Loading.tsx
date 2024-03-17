@@ -4,7 +4,7 @@ import './Loading.css';
 
 
 function Loading() {
-    const [currentLine, setCurrentLine] = useState(0);
+    const [currentLine, setCurrentLine] = useState(-1);
 
     const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function Loading() {
     ]
 
     const codeContainerRef = useRef<HTMLScriptElement>(null)
-
+    
     useEffect(() => {
         const timer = setTimeout(() => {
             if (currentLine < lines_of_code.length){
@@ -30,16 +30,17 @@ function Loading() {
             }
             if (currentLine == lines_of_code.length - 1){
                 setTimeout(() => {
-                    navigate("/home")
+                    // navigate("/home")
                 }, 2000)
             }
         }, 750)
-
+        
         return () => clearTimeout(timer);
     }, [currentLine]);
-
+    
     useEffect(() => {
         if (codeContainerRef.current) {
+            if (currentLine < 0) return;
             if (currentLine >= lines_of_code.length) return;
             let p_node = document.createElement("p")
             p_node.className = "code-text"
@@ -52,7 +53,7 @@ function Loading() {
         <div className="loading-container">
             <div className="terminal-window code-background">
                 <pre>
-                    <code ref={codeContainerRef} id="codeContainer"></code>
+                    <code ref={codeContainerRef}></code>
                 </pre>
             </div>
         </div>
